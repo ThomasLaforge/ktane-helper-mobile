@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { View } from 'react-native';
 
 interface GameSelectorProps {
 }
@@ -13,11 +14,15 @@ export class GameSelector extends Component<GameSelectorProps, GameSelectorState
         }  
     }
 
+    static navigationOptions = {
+        title: 'GameSelector',
+    };
+
     render() {
         return (
-        <div>
+        <View>
             
-        </div>
+        </View>
         )
     }
 }
