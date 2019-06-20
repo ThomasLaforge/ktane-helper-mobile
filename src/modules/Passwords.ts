@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq'
+
 export type Word = 'about' | 'after' | 'again' | 'below' | 'could' | 'every' | 'rst' | 'found' | 'great' | 'house' | 'large' | 'learn' | 'never' | 'other' | 'place' | 'plant' | 'point' | 'right' | 'small' | 'sound' | 'spell' | 'still' | 'study' | 'their' | 'there' | 'these' | 'thing' | 'think' | 'three' | 'water' | 'where' | 'which' | 'world' | 'would' | 'write'
 export const words: Word[] = ['about', 'after', 'again', 'below', 'could', 'every', 'rst', 'found', 'great', 'house', 'large', 'learn', 'never', 'other', 'place', 'plant', 'point', 'right', 'small', 'sound', 'spell', 'still', 'study', 'their', 'there', 'these', 'thing', 'think', 'three', 'water', 'where', 'which', 'world', 'would', 'write']
 
@@ -16,25 +18,20 @@ export class PasswordsGame {
         return this.getSolutions().length === 0
     }
 
-    getSubStringsPossibles(echelon = 0, possibilities: string[] = []){
-        // init arrays
-        if(possibilities.length === 0){
-            possibilities = new Array(this.possibilities[0].length).fill('')
-        }
-
+    getSubStringsPossibles(echelon = 0, possibilities: string[] = ['']){
         let newPossibilities = []
             
         for (let i = 0; i < this.possibilities[echelon].length; i++) {
-            newPossibilities.push( 
-                possibilities.map( p => p + this.possibilities[echelon][i])
-            )
+            newPossibilities.push(...possibilities.map( p => 
+                p + this.possibilities[echelon][i]
+            ))
         }
 
-        if(echelon + 1 < this.possibilities.length){   
-            possibilities = this.getSubStringsPossibles(echelon + 1, newPossibilities)
+        if(echelon < this.possibilities.length - 1){
+            return this.getSubStringsPossibles(echelon + 1, newPossibilities)
         }
 
-        return possibilities
+        return newPossibilities
     }
 
     getSolutions(){
@@ -54,6 +51,10 @@ export class PasswordsGame {
 
     getSolution(){
         return this.isSuffisient() && this.getSolutions()[0]
+    }
+
+    getLettersPossibleOnPosition(pos: number){
+        return uniq(words.map(w => w[pos]))
     }
 
 }
