@@ -5,7 +5,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "npm run tsc-test && npm run jest",
+    "tsc-test": "tsc --project . --noEmit",
+    "jest": "jest"
   },
   "dependencies": {
     "expo": "^33.0.0",
@@ -20,10 +23,39 @@
     "react-navigation": "^3.11.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.15",
     "@types/react": "^16.8.19",
     "@types/react-native": "^0.57.60",
+    "@types/react-test-renderer": "^16.8.2",
     "babel-preset-expo": "^5.1.1",
+    "jest": "^24.8.0",
+    "jest-expo": "^33.0.2",
+    "react-test-renderer": "^16.8.6",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)+(spec|test).ts?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "jsx": "react"
+        }
+      }
+    }
+  }
 }
