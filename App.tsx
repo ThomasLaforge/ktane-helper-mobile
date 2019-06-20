@@ -1,6 +1,9 @@
 import HomeScreen from './src/screens/Home'
 import GameSelectorScreen from './src/screens/GameSelector'
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {createStackNavigator, createAppContainer, NavigationScreenProps } from 'react-navigation';
+
+export interface AppProps extends NavigationScreenProps {
+} 
 
 const MainNavigator = createStackNavigator(
   {
