@@ -16,12 +16,25 @@ export class PasswordsGame {
         return this.getSolutions().length === 0
     }
 
-    getSubStringsPossibles(echelon = this.possibilities.length){
-        // if(echelon === ){
+    getSubStringsPossibles(echelon = 0, possibilities: string[] = []){
+        // init arrays
+        if(possibilities.length === 0){
+            possibilities = new Array(this.possibilities[0].length).fill('')
+        }
 
-        // }
-        // return this.c
-        return []
+        let newPossibilities = []
+            
+        for (let i = 0; i < this.possibilities[echelon].length; i++) {
+            newPossibilities.push( 
+                possibilities.map( p => p + this.possibilities[echelon][i])
+            )
+        }
+
+        if(echelon + 1 < this.possibilities.length){   
+            possibilities = this.getSubStringsPossibles(echelon + 1, newPossibilities)
+        }
+
+        return possibilities
     }
 
     getSolutions(){
