@@ -8,6 +8,7 @@ export enum Symbol {
     Triangle,
     X,
     C,
+    CInversed,
     Interrogation,
     Star,
     StarFull,
@@ -37,12 +38,12 @@ export const SymbolsColumns: Symbol[][] = [
         Symbol.NInversed,
         Symbol.Triangle,
         Symbol.X,
-        Symbol.C
+        Symbol.CInversed
     ],
     [
         Symbol.E,
         Symbol.O,
-        Symbol.C,
+        Symbol.CInversed,
         Symbol.Q,
         Symbol.Star,
         Symbol.X,
