@@ -1,6 +1,7 @@
 import HomeScreen from './src/screens/Home'
 import GameSelectorScreen from './src/screens/GameSelector'
 import {createStackNavigator, createAppContainer, NavigationScreenProps } from 'react-navigation';
+import { Component } from 'react';
 
 export interface AppProps extends NavigationScreenProps {
 } 
@@ -24,6 +25,12 @@ const MainNavigator = createStackNavigator(
   }
 );
 
-const App = createAppContainer(MainNavigator);
+const RootNavigator = createAppContainer(MainNavigator);
 
-export default App;
+export default RootNavigator
+
+// export default class App extends Component {
+//   render() {
+//     return <Provider><RootNavigator /></Provider>
+//   }
+// }
