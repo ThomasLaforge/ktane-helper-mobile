@@ -7,10 +7,8 @@ export type char = 'q' | 'w' | 'e' | 'r' | 't' | 'y' | 'u' | 'i' | 'o' | 'p' | '
 
 export class PasswordsGame {
 
-    solutions: Word[]
-
     constructor(
-        public possibilities: char[][]
+        public possibilities: char[][] = []
     )
     {}
 
@@ -35,14 +33,12 @@ export class PasswordsGame {
     }
 
     getSolutions(){
-        if(!this.solutions){
-            const subStringPossibilities = this.getSubStringsPossibles()
-            this.solutions = subStringPossibilities.reduce( 
-                (solutions, p) => solutions.concat(this.getSolutionsFromSubString(p))
-                , []
-            )
-        }
-        return this.solutions
+        const subStringPossibilities = this.getSubStringsPossibles()
+        const solutions = subStringPossibilities.reduce( 
+            (solutions, p) => solutions.concat(this.getSolutionsFromSubString(p))
+            , []
+        )
+        return solutions
     }
 
     getSolutionsFromSubString(subString: string){
@@ -53,8 +49,8 @@ export class PasswordsGame {
         return this.isSuffisient() && this.getSolutions()[0]
     }
 
-    getLettersPossibleOnPosition(pos: number){
-        return uniq(words.map(w => w[pos]))
+    getLettersPossibleOnPosition(pos = this.possibilities.length + 1){
+        return uniq(words.map(w => w[pos - 1]))
     }
 
 }
