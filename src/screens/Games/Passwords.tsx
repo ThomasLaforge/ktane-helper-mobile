@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
 import { Card } from 'native-base'
 import { AppProps } from '../../../App';
 import { PasswordsGame, char } from '../../modules/Passwords';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const NB_MAX_SOLUTIONS_TO_SHOW = 5
 
@@ -13,7 +14,7 @@ interface PasswordsState {
     charsToAdd: char[]
 }
 
-export class Passwords extends Component<PasswordsProps, PasswordsState> {
+export default class Passwords extends Component<PasswordsProps, PasswordsState> {
 
     constructor(props: PasswordsProps) {
         super(props)
@@ -89,17 +90,27 @@ export class Passwords extends Component<PasswordsProps, PasswordsState> {
     }
 
     get possibleChars(){
-        return this.pwdGame.getLettersPossibleOnPosition()
+        const chars = this.pwdGame.getLettersPossibleOnPosition()
+        console.log('chars', chars);
+        return chars 
     }
     renderCharButtons(){
-        return this.possibleChars.map( (char: char) => {
-            <Card 
-                onTouchStart={() => this.selectChar(char)}
-                style={{ borderColor: this.state.charsToAdd.includes(char) ? 'green' : null }}
+        return <View style={styles.charsList}>
+            {this.possibleChars.map( (char: char, key: number) => (
+            <TouchableHighlight
+                key={key}
+                style={styles.box}
+                onPress={() => this.selectChar(char)}
             >
-                <Text>{char}</Text>
-            </Card>
-        })
+                <View style={[
+                    { borderColor: this.state.charsToAdd.includes(char) ? 'green' : null },
+                    styles.charBtn
+                ]}>
+                    <Text>{char}</Text>
+                </View>
+            </TouchableHighlight>
+            ))}
+        </View>
     }
 
     renderActionsButtons(){
@@ -125,4 +136,18 @@ export class Passwords extends Component<PasswordsProps, PasswordsState> {
     }
 }
 
-export default Passwords
+const charWidth = Dimensions.get('screen').width / 5
+
+const styles = StyleSheet.create({
+    box: {
+        width: charWidth,
+        height: charWidth
+    },
+    charBtn: {
+        borderWidth: 5
+    },
+    charsList: {
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    }
+})

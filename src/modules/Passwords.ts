@@ -18,15 +18,17 @@ export class PasswordsGame {
 
     getSubStringsPossibles(echelon = 0, possibilities: string[] = ['']){
         let newPossibilities = []
-            
-        for (let i = 0; i < this.possibilities[echelon].length; i++) {
-            newPossibilities.push(...possibilities.map( p => 
-                p + this.possibilities[echelon][i]
-            ))
-        }
-
-        if(echelon < this.possibilities.length - 1){
-            return this.getSubStringsPossibles(echelon + 1, newPossibilities)
+        
+        if(this.possibilities.length > 0){
+            for (let i = 0; i < this.possibilities[echelon].length; i++) {
+                newPossibilities.push(...possibilities.map( p => 
+                    p + this.possibilities[echelon][i]
+                ))
+            }
+    
+            if(echelon < this.possibilities.length - 1){
+                return this.getSubStringsPossibles(echelon + 1, newPossibilities)
+            }
         }
 
         return newPossibilities
@@ -38,6 +40,7 @@ export class PasswordsGame {
             (solutions, p) => solutions.concat(this.getSolutionsFromSubString(p))
             , []
         )
+        // console.log('solutions', solutions)
         return solutions
     }
 
@@ -50,7 +53,15 @@ export class PasswordsGame {
     }
 
     getLettersPossibleOnPosition(pos = this.possibilities.length + 1){
-        return uniq(words.map(w => w[pos - 1]))
+        return uniq(
+            words
+                .map(w => w[pos - 1])
+                .filter(l => {
+                    let solutions = this.getSolutions()
+                    return this.possibilities.length === 0 || solutions.length > 0 && solutions.filter(s => s[this.possibilities.length] === l).length > 0
+                })
+        )
+        .sort()
     }
 
 }
