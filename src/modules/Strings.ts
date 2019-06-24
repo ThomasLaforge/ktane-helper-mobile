@@ -10,14 +10,20 @@ export enum StringColor {
 
 export class StringsGame {
     
+    public isLastNumberOdd: boolean
+
     constructor(
         public strings: StringColor[],
-        public serial?: string
+        isLastNumberOdd: string | boolean
     )
-    {}
+    {
+        if(typeof isLastNumberOdd === 'string'){
+            isLastNumberOdd = new SerialHelper(isLastNumberOdd).isLastNumberOdd()
+        }
+        this.isLastNumberOdd = isLastNumberOdd
+    }
 
     getStringIndexToCut(): number {
-        const serialHelper = new SerialHelper(this.serial)
         switch (this.nbStrings) {
             case 3:
                 if(this.hasNo(StringColor.Red)){
@@ -27,14 +33,14 @@ export class StringsGame {
                     return this.nbStrings
                 }
                 else if(this.nbStringsOfColor(StringColor.Blue) > 1){
-                    return this.strings.lastIndexOf(StringColor.Blue)
+                    return this.strings.lastIndexOf(StringColor.Blue) + 1
                 }
                 else {
                     return this.nbStrings
                 }
             case 4:
-                if(this.nbStringsOfColor(StringColor.Red) > 1 && serialHelper.isLastNumberOdd()){
-                    return this.strings.lastIndexOf(StringColor.Red)
+                if(this.nbStringsOfColor(StringColor.Red) > 1 && this.isLastNumberOdd){
+                    return this.strings.lastIndexOf(StringColor.Red) + 1
                 }
                 else if(this.last === StringColor.Yellow && this.hasNo(StringColor.Red)){
                     return 1
@@ -49,7 +55,7 @@ export class StringsGame {
                     return 2
                 }
             case 5:
-                if(this.last === StringColor.Black && serialHelper.isLastNumberOdd()){
+                if(this.last === StringColor.Black && this.isLastNumberOdd){
                     return 4
                 }
                 else if(this.nbStringsOfColor(StringColor.Red) === 1 && this.nbStringsOfColor(StringColor.Yellow) > 1){
@@ -62,7 +68,7 @@ export class StringsGame {
                     return 1
                 }
             case 6:
-                if(this.hasNo(StringColor.Yellow) && serialHelper.isLastNumberOdd()){
+                if(this.hasNo(StringColor.Yellow) && this.isLastNumberOdd){
                     return 3
                 }
                 else if(this.nbStringsOfColor(StringColor.Yellow) === 1 && this.nbStringsOfColor(StringColor.White) > 1){
