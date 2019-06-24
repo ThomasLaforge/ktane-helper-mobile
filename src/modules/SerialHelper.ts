@@ -6,7 +6,7 @@ export class SerialHelper {
 
     // TODO
     getLastNumber(){
-        return 1
+        return parseInt(this.serial.match(/\d$/)[0]);
     }
 
     // Pair
