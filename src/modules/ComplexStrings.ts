@@ -6,11 +6,11 @@ export enum ComplexStringColor {
 }
 
 export enum ComplexStringLetter {
-    C,
-    D,
-    S,
-    P,
-    B
+    C = 'C',
+    D = 'D',
+    S = 'S',
+    P = 'P',
+    B = 'B'
 }
 
 export class ComplexStringsGame {
