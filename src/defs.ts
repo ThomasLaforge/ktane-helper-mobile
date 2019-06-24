@@ -3,6 +3,7 @@ import Passwords from "./screens/Games/Passwords";
 import ComplexStrings from "./screens/Games/ComplexStrings";
 import { MazeGame } from "./modules/Maze";
 import { KnobGame } from "./modules/Knob";
+import WITF from "./screens/Games/WhoIsTheFirstGame";
 
 export const GAMES = {
     Passwords: {
@@ -44,6 +45,7 @@ export const GAMES = {
         image: require('../assets/GamesLogos/StringsSequence.png'),
     },
     WhoIsTheFirst: {
-        image: require('../assets/GamesLogos/WhoIsTheFirst.png')
+        image: require('../assets/GamesLogos/WhoIsTheFirst.png'),
+        screen: WITF
     }
 }

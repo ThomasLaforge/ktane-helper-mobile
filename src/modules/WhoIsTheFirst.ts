@@ -1,6 +1,8 @@
-export type WITF_WORD = 'YES' | 'FIRST' | 'DISPLAY' | 'OKAY' | 'SAYS' | 'NOTHING' | '' | 'BLANK' | 'NO' | 'LED' | 'LEAD' | 'READ' | 'RED' | 'REED' | 'LEED' | 'HOLD ON' | 'YOU' | 'YOU ARE' | 'YOUR' | "YOU'RE" | 'UR' | 'THERE' | "THEY'RE" | 'THEIR' | 'THEY ARE' | 'SEE' | 'C' | 'CEE'
+export const NB_WORDS = 6
 
-export const Words = [
+export type WITF_SCREEN_WORD = 'YES' | 'FIRST' | 'DISPLAY' | 'OKAY' | 'SAYS' | 'NOTHING' | '' | 'BLANK' | 'NO' | 'LED' | 'LEAD' | 'READ' | 'RED' | 'REED' | 'LEED' | 'HOLD ON' | 'YOU' | 'YOU ARE' | 'YOUR' | "YOU'RE" | 'UR' | 'THERE' | "THEY'RE" | 'THEIR' | 'THEY ARE' | 'SEE' | 'C' | 'CEE'
+
+export const SCREEN_WORDS = [
     'YES',
     'FIRST',
     'DISPLAY',
@@ -62,15 +64,19 @@ const wordsMap = {
     "LIKE": ["YOU'RE", "NEXT", "U", "UR", "HOLD", "DONE", "UH UH", "WHAT?","UH HUH", "YOU", "LIKE", "SURE", "YOU ARE", "YOUR"]
 }
 
+
+export type BTN_WORD = 'READY' | 'FIRST' | 'NO' | 'BLANK' | 'NOTHING' | 'YES' | 'WHAT' | 'UHHH' | 'LEFT' | 'RIGHT' | 'MIDDLE' | 'OKAY' | 'WAIT' | 'PRESS' | 'YOU' | 'YOU ARE' | 'YOUR' | "YOU'RE" | 'UR' | 'U' | 'UH HUH' | 'UH UH' | 'WHAT?' | 'DONE' | 'NEXT' | 'HOLD' | 'SURE' | 'LIKE'
+export const BTN_WORDS = Object.keys(wordsMap)
+
 export class WhoIsTheFirstGame {
 
     constructor(
-        public sreenWord: WITF_WORD,
-        public words: WITF_WORD[]
+        public screenWord: WITF_SCREEN_WORD,
+        public words: BTN_WORD[]
     ){}
 
     getPosition(){
-        switch (this.sreenWord) {
+        switch (this.screenWord) {
             case 'YES': return 2
             case 'FIRST': return 1
             case 'DISPLAY': return 5
@@ -110,7 +116,6 @@ export class WhoIsTheFirstGame {
         const wordsPossibilities = wordsMap[wordToPosition]
         if(!wordsPossibilities){
             throw Error(`no word list for this word: ${wordToPosition}`);
-            
         }
         const solution = wordsPossibilities.find(w => this.words.includes(w))
         return solution
