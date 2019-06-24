@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     gamesList: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        overflow: 'visible'
+        justifyContent: 'space-around'
     }
 })
