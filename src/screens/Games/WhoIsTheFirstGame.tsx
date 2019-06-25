@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TextInput, CheckBox, Switch, Picker, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Picker, Dimensions } from 'react-native';
 import { AppProps } from '../../../App';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { WhoIsTheFirstGame, BTN_WORD, WITF_SCREEN_WORD, SCREEN_WORDS, NB_WORDS } from '../../modules/WhoIsTheFirst';
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column'
     },
+    form: {},
     formPart: {
         marginVertical: 25
     },
