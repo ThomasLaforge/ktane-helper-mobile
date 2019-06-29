@@ -18,6 +18,7 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native';
 import { AppProps } from '../../../App';
+import { THEME_COLOR } from '../../styles/colors';
 
 interface ButtonGameProps extends AppProps {
 }
@@ -60,3 +61,4 @@ En fonction de la couleur, il faut relacher quand un numéro est présent dans l
 }
 
 export default ButtonGame
+        color: THEME_COLOR,

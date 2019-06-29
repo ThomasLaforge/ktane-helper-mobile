@@ -20,10 +20,10 @@ const routes: NavigationRouteConfigMap = Object.assign({
 }, gameScreens)
 
 const navigatorOptions: StackNavigatorConfig = {
-  initialRouteName: "GameSelector",
+  initialRouteName: 'ButtonGame',
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: THEME_COLOR,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -40,6 +40,7 @@ const RootNavigator = createAppContainer(MainNavigator);
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons';
+import { THEME_COLOR } from './src/styles/colors';
 
 export default class App extends Component<{}, {fontLoaded: boolean}> {
 
