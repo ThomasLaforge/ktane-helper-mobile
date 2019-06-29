@@ -37,7 +37,8 @@ const RootNavigator = createAppContainer(MainNavigator);
 
 // ----------------------------------------------------------------------------------------- //
 
-import { AppLoading, Font } from 'expo';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons';
 
 export default class App extends Component<{}, {fontLoaded: boolean}> {
