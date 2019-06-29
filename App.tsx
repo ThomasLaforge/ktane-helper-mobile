@@ -1,11 +1,12 @@
 import HomeScreen from './src/screens/Home'
 import GameSelectorScreen from './src/screens/GameSelector'
 import DefuserHelpScreen from './src/screens/DefuserHelp'
-import { createStackNavigator, createAppContainer, NavigationScreenProps, StackNavigatorConfig, NavigationRouteConfigMap } from 'react-navigation';
+import { createStackNavigator, createAppContainer, NavigationScreenProps, StackNavigatorConfig, NavigationRouteConfigMap, NavigationRouter } from 'react-navigation';
 import React, { Component } from 'react';
 import { GAMES } from './src/defs';
 
-export interface AppProps extends NavigationScreenProps {
+export interface AppProps {
+  navigation?: NavigationRouter
 }
 
 let gameScreens = {}
