@@ -16,12 +16,16 @@ export const wordFrequencies = {
     vector: '3.595',
     beats: '3.600'
 }
-export const words = Object.keys(wordFrequencies)
+
+export type Word = 'shell' | 'halls' | 'slick' | 'trick' | 'boxes' | 'leaks' | 'strobe' | 'bistro' | 'flick' | 'bombs' | 'break' | 'brick' | 'steak' | 'sting' | 'vector' | 'beats'
+
+export const words = Object.keys(wordFrequencies) as Word[]
 
 export class MorseGame {
 
     constructor(
-        public startOfWord: string
+        public startOfWord: string,
+        public dict = words
     ){}
 
     getFrequency(){
@@ -30,6 +34,14 @@ export class MorseGame {
     }
     
     getWord(){
-        return words.find(w => w.startsWith(this.startOfWord))
+        return this.dict.find(w => w.startsWith(this.startOfWord))
+    }
+
+    hasOnlyOneSolution(){
+        return this.getPossibilities().length === 1
+    }
+
+    getPossibilities(){
+        return this.dict.filter(w => w.startsWith(this.startOfWord))
     }
 }

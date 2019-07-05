@@ -21,7 +21,7 @@ const routes: NavigationRouteConfigMap = Object.assign({
 }, gameScreens)
 
 const navigatorOptions: StackNavigatorConfig = {
-  initialRouteName: 'ButtonGame',
+  initialRouteName: 'Morse',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: THEME_COLOR,

@@ -1,8 +1,9 @@
 import ButtonGame from "./screens/Games/ButtonGame";
 import Passwords from "./screens/Games/Passwords";
 import ComplexStrings from "./screens/Games/ComplexStrings";
-import { MazeGame } from "./modules/Maze";
-import { KnobGame } from "./modules/Knob";
+import MazeGame from "./screens/Games/Maze";
+import KnobGame from "./screens/Games/Knob";
+import Morse from './screens/Games/Morse'
 import WITF from "./screens/Games/WhoIsTheFirstGame";
 
 export const GAMES = {
@@ -37,6 +38,7 @@ export const GAMES = {
     },
     Morse: {
         image: require('../assets/GamesLogos/Morse.png'),
+        screen: Morse
     },
     Strings: {
         image: require('../assets/GamesLogos/Strings.png'),
